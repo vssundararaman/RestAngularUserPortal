@@ -50,4 +50,16 @@ public class UserController {
 
         return userRepository.findById(id);
     }
+
+    @PostMapping("/saveAllUser")
+    public Iterable<User> saveAllUser(@RequestBody Iterable<User> userList, @RequestHeader(value = "Authorization", required = false) String authorization) {
+
+        authValidator.validateAuthorization(authorization);
+
+        userRepository.saveAll(userList);
+
+        return userRepository.findAll();
+    }
+
+
 }

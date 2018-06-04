@@ -15,19 +15,19 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   getCustomer(id: string): Observable<Object> {
-    return this.http.get(`${this.baseUrl}` + `/getCustomer/${id}`);
+    return this.http.get(`${this.baseUrl}` + `/getCustomer/${id}`, httpOptions);
   }
 
   createCustomer(customer: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + `/saveCustomer`, customer);
+    return this.http.post(`${this.baseUrl}` + `/saveCustomer`, customer, httpOptions);
   }
 
-  updateCustomer(id: string, value: any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}` + `/updateCustomer/${id}`, value);
+  updateCustomer(customer: Object): Observable<Object> {
+    return this.http.put(`${this.baseUrl}` + `/updateCustomer`, customer, httpOptions);
   }
 
   deleteCustomer(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}`+`/deleteCustomer/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}`+`/deleteCustomer/${id}`,httpOptions);
   }
 
   getCustomersList(query = {}): Observable<any> {
@@ -35,13 +35,13 @@ export class CustomerService {
   }
 
   deleteAll(): Observable<any> {
-    return this.http.delete(`${this.baseUrl}` + `/delete`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}` + `/delete`,httpOptions);
   }
 }
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Authorization': 'xyzx'
+    'Authorization': 'xyz'
   })
 };
